@@ -6,35 +6,47 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:11:17 by akok              #+#    #+#             */
-/*   Updated: 2025/06/06 14:53:09 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/25 16:49:58 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
 
-static void	push(t_list **from, t_list **to);
+static int	push(t_info *from, t_info *to);
 
-void	pa(t_list **a, t_list **b)
+void	pa(t_data *data)
 {
-	push(a, b);
+	if (push(&data->stack_b, &data->stack_a) == -1)
+		return ;
 	ft_putstr_fd("pa\n", 1);
 }
 
-void	pb(t_list **a, t_list **b)
+void	pb(t_data *data)
 {
-	push(b, a);
+	if (push(&data->stack_a, &data->stack_b) == -1)
+		return ;
 	ft_putstr_fd("pb\n", 1);
 }
 
-static void	push(t_list **from, t_list **to)
+static int	push(t_info *from, t_info *to)
 {
-	t_list	*new_from_top;
+	t_stack	*top;
 
-	if (!from || !to || !*from)
-		return ;
-	new_from_top = (*from)->next;
-	(*from)->next = *to;
-	*to = *from;
-	*from = new_from_top;
+	if (!from->head)
+		return (-1);
+	top = from->head;
+	from->head = top->next;
+	if (from->head != NULL)
+		from->head->prev = NULL;
+	else
+		from->tail = NULL;
+	top->next = to->head;
+	if (to->head != NULL)
+		to->head->prev = top;
+	to->head = top;
+	if (to->tail == NULL)
+		to->tail = top;
+	from->size--;
+	to->size++;
+	return (1);
 }

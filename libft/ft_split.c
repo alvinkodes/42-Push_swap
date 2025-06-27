@@ -6,9 +6,10 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:13:08 by akok              #+#    #+#             */
-/*   Updated: 2025/05/20 14:32:56 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/13 11:06:55 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static int	ft_is_sep(char c, char sep)
@@ -58,17 +59,17 @@ static char	*ft_next_word(char **arr, char const *s, char sep, size_t *pos)
 	return (*arr);
 }
 
-static void	ft_free_all(char **arr)
+static void	ft_free_all(char **arr, int count)
 {
-	char	**tmp;
+	int	i;
 
 	if (!arr)
 		return ;
-	tmp = arr;
-	while (*tmp)
+	i = 0;
+	while (i < count)
 	{
-		free(*tmp);
-		tmp++;
+		free(arr[i]);
+		i++;
 	}
 	free(arr);
 }
@@ -92,7 +93,7 @@ char	**ft_split(char const *s, char c)
 	{
 		if (!ft_next_word(&arr[i], s, c, &pos))
 		{
-			ft_free_all(arr);
+			ft_free_all(arr, i);
 			return (NULL);
 		}
 		i++;

@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   cost_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 13:24:07 by akok              #+#    #+#             */
-/*   Updated: 2025/06/07 13:24:27 by akok             ###   ########.fr       */
+/*   Created: 2025/06/27 15:37:37 by akok              #+#    #+#             */
+/*   Updated: 2025/06/27 15:53:54 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_free_all(char **arr)
+int	is_between_desc(int cur_val, int next_val, int val)
 {
-	size_t	i;
-
-	i = 0;
-	while (arr[i])
-		free(arr[i++]);
-	free(arr);
+	return (val < cur_val && val > next_val);
 }
 
-void	dummy_free(void *ptr)
+int	is_between_ascd(int cur_val, int next_val, int val)
 {
-	(void)ptr;
+	return (val > cur_val && val < next_val);
+}
+
+int	max_ab(int cost_a, int cost_b)
+{
+	if (cost_a < 0)
+		cost_a = -cost_a;
+	if (cost_b < 0)
+		cost_b = -cost_b;
+	if (cost_a >= cost_b)
+		return (cost_a);
+	return (cost_b);
 }

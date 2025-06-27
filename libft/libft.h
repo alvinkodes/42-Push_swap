@@ -6,9 +6,10 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 08:40:57 by akok              #+#    #+#             */
-/*   Updated: 2025/06/07 12:43:26 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/18 16:24:11 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -33,6 +34,7 @@ long	ft_atoi(const char *nptr);
 int		ft_lstsize(t_list	*lst);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_count_words(char const *s, char sep);
 
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
@@ -44,6 +46,7 @@ void	ft_lstadd_back(t_list **lst, t_list *node);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
+void	ft_free_array(char **arr);
 
 void	ft_printlst(t_list *lst, void (*f)(void *));
 void	print_int(void *data);
@@ -63,6 +66,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
+char	*get_next_line(int fd);
 
 void	*ft_bzero(void *s, size_t n);
 void	*ft_memset(void *s, int c, size_t n);

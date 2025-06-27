@@ -6,43 +6,46 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:09:59 by akok              #+#    #+#             */
-/*   Updated: 2025/06/06 15:28:39 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/25 18:01:34 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	rotate(t_list **stack);
+static void	rotate(t_info *stack);
 
-void	ra(t_list **a)
+void	ra(t_data *data)
 {
-	rotate(a);
+	rotate(&data->stack_a);
 	ft_putstr_fd("ra\n", 1);
 }
 
-void	rb(t_list **b)
+void	rb(t_data *data)
 {
-	rotate(b);
+	rotate(&data->stack_b);
 	ft_putstr_fd("rb\n", 1);
 }
 
-void	rr(t_list **a, t_list **b)
+void	rr(t_data *data)
 {
-	rotate(a);
-	rotate(b);
+	rotate(&data->stack_a);
+	rotate(&data->stack_b);
 	ft_putstr_fd("rr\n", 1);
 }
 
-static void	rotate(t_list **stack)
+static void	rotate(t_info *stack)
 {
-	t_list	*new_top;
-	t_list	*last_node;
+	t_stack	*top;
+	t_stack	*bot;
 
-	if (!stack || !*stack || !(*stack)->next)
+	if (!stack->head || !stack->head->next)
 		return ;
-	new_top = (*stack)->next;
-	last_node = ft_lstlast(*stack);
-	last_node->next = *stack;
-	(*stack)->next = NULL;
-	*stack = new_top;
+	top = stack->head;
+	stack->head = top->next;
+	stack->head->prev = NULL;
+	bot = stack->tail;
+	bot->next = top;
+	top->prev = bot;
+	stack->tail = top;
+	stack->tail->next = NULL;
 }

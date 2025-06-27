@@ -6,48 +6,44 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:43:26 by akok              #+#    #+#             */
-/*   Updated: 2025/06/06 17:05:21 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/25 18:26:56 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	reverse_rotate(t_list **stack);
+static void	reverse_rotate(t_info *stack);
 
-void	rra(t_list **a)
+void	rra(t_data *data)
 {
-	reverse_rotate(a);
+	reverse_rotate(&data->stack_a);
 	ft_putstr_fd("rra\n", 1);
 }
 
-void	rrb(t_list **b)
+void	rrb(t_data *data)
 {
-	reverse_rotate(b);
+	reverse_rotate(&data->stack_b);
 	ft_putstr_fd("rrb\n", 1);
 }
 
-void	rrr(t_list **a, t_list **b)
+void	rrr(t_data *data)
 {
-	reverse_rotate(a);
-	reverse_rotate(b);
+	reverse_rotate(&data->stack_a);
+	reverse_rotate(&data->stack_b);
 	ft_putstr_fd("rrr\n", 1);
 }
 
-static void	reverse_rotate(t_list **stack)
+static void	reverse_rotate(t_info *stack)
 {
-	t_list	*cur;
-	t_list	*prev;
+	t_stack	*bot;
 
-	if (!stack || !*stack || !(*stack)->next)
+	if (!stack->head || !stack->head->next)
 		return ;
-	cur = *stack;
-	prev = NULL;
-	while (cur->next)
-	{
-		prev = cur;
-		cur = cur->next;
-	}
-	prev->next = NULL;
-	cur->next = *stack;
-	*stack = cur;
+	bot = stack->tail;
+	stack->tail = bot->prev;
+	stack->tail->next = NULL;
+	bot->next = stack->head;
+	stack->head->prev = bot;
+	stack->head = bot;
+	bot->prev = NULL;
 }

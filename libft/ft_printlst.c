@@ -20,6 +20,7 @@ void	ft_printlst(t_list *lst, void (*f)(void *))
 	while (lst)
 	{
 		f(lst->content);
+		ft_putchar_fd('\n', 1);
 		lst = lst->next;
 	}
 }
