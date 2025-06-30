@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:44:24 by akok              #+#    #+#             */
-/*   Updated: 2025/06/27 15:50:28 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/30 10:03:04 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	pre_sort_push(t_data *data)
 	i = 0;
 	while (data->stack_a.size > 3 && i < 2)
 	{
-		pb(data);
+		pb(data, 1);
 		i++;
 	}
 }
@@ -84,13 +84,14 @@ static void	flush_b_to_a(t_data *data)
 		cur_val = data->stack_b.head->val;
 		cost_info.cost_a = cost_to_place(data, stack_size, cur_val, B_TO_A);
 		rotate_a(data, &cost_info);
-		pa(data);
+		pa(data, 1);
 	}
 }
 
 static void	bring_min_to_top(t_data *data)
 {
 	t_cost	cost_info;
+	int		min_pos;
 	int		max_val;
 	int		min_val;
 
@@ -98,6 +99,10 @@ static void	bring_min_to_top(t_data *data)
 	max_val = INT32_MIN;
 	min_val = INT32_MAX;
 	set_min_max(data, &min_val, &max_val, B_TO_A);
-	cost_info.cost_a = get_node_pos(data, min_val, B_TO_A);
+	min_pos = get_node_pos(data, min_val, B_TO_A);
+	if (min_pos <= data->stack_a.size / 2)
+		cost_info.cost_a = min_pos;
+	else
+		cost_info.cost_a = (min_pos - data->stack_a.size);
 	rotate_a(data, &cost_info);
 }

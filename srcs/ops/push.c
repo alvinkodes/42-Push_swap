@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:11:17 by akok              #+#    #+#             */
-/*   Updated: 2025/06/25 16:49:58 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/30 09:58:29 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 static int	push(t_info *from, t_info *to);
 
-void	pa(t_data *data)
+void	pa(t_data *data, int print)
 {
 	if (push(&data->stack_b, &data->stack_a) == -1)
 		return ;
-	ft_putstr_fd("pa\n", 1);
+	if (print)
+		ft_putstr_fd("pa\n", 1);
 }
 
-void	pb(t_data *data)
+void	pb(t_data *data, int print)
 {
 	if (push(&data->stack_a, &data->stack_b) == -1)
 		return ;
-	ft_putstr_fd("pb\n", 1);
+	if (print)
+		ft_putstr_fd("pb\n", 1);
 }
 
 static int	push(t_info *from, t_info *to)

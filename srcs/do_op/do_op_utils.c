@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:27:07 by akok              #+#    #+#             */
-/*   Updated: 2025/06/27 15:59:18 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/30 10:02:07 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	rotate_both_up(t_data *data, t_cost *cost_info)
 {
 	while (cost_info->cost_a > 0 && cost_info->cost_b > 0)
 	{
-		rr(data);
+		rr(data, 1);
 		cost_info->cost_a--;
 		cost_info->cost_b--;
 	}
@@ -26,7 +26,7 @@ static void	rotate_both_down(t_data *data, t_cost *cost_info)
 {
 	while (cost_info->cost_a < 0 && cost_info->cost_b < 0)
 	{
-		rrr(data);
+		rrr(data, 1);
 		cost_info->cost_a++;
 		cost_info->cost_b++;
 	}
@@ -46,7 +46,7 @@ void	rotate_a(t_data *data, t_cost *cost_info)
 	{
 		while (cost_info->cost_a > 0)
 		{
-			ra(data);
+			ra(data, 1);
 			cost_info->cost_a--;
 		}
 	}
@@ -54,7 +54,7 @@ void	rotate_a(t_data *data, t_cost *cost_info)
 	{
 		while (cost_info->cost_a < 0)
 		{
-			rra(data);
+			rra(data, 1);
 			cost_info->cost_a++;
 		}
 	}
@@ -66,7 +66,7 @@ void	rotate_b(t_data *data, t_cost *cost_info)
 	{
 		while (cost_info->cost_b > 0)
 		{
-			rb(data);
+			rb(data, 1);
 			cost_info->cost_b--;
 		}
 	}
@@ -74,7 +74,7 @@ void	rotate_b(t_data *data, t_cost *cost_info)
 	{
 		while (cost_info->cost_b < 0)
 		{
-			rrb(data);
+			rrb(data, 1);
 			cost_info->cost_b++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:43:26 by akok              #+#    #+#             */
-/*   Updated: 2025/06/25 18:26:56 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/30 09:58:13 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 
 static void	reverse_rotate(t_info *stack);
 
-void	rra(t_data *data)
+void	rra(t_data *data, int print)
 {
 	reverse_rotate(&data->stack_a);
-	ft_putstr_fd("rra\n", 1);
+	if (print)
+		ft_putstr_fd("rra\n", 1);
 }
 
-void	rrb(t_data *data)
+void	rrb(t_data *data, int print)
 {
 	reverse_rotate(&data->stack_b);
-	ft_putstr_fd("rrb\n", 1);
+	if (print)
+		ft_putstr_fd("rrb\n", 1);
 }
 
-void	rrr(t_data *data)
+void	rrr(t_data *data, int print)
 {
 	reverse_rotate(&data->stack_a);
 	reverse_rotate(&data->stack_b);
-	ft_putstr_fd("rrr\n", 1);
+	if (print)
+		ft_putstr_fd("rrr\n", 1);
 }
 
 static void	reverse_rotate(t_info *stack)

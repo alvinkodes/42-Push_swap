@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:38:28 by akok              #+#    #+#             */
-/*   Updated: 2025/06/25 16:23:05 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/30 08:49:18 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,14 @@ void	parse_input(char **input, t_data *data)
 	while (*input)
 	{
 		arr = ft_split(*input, ' ');
+		if (*arr == NULL)
+			return (free_input(data, arr));
 		i = 0;
 		while (arr[i])
 		{
 			val = ft_atoi(arr[i]);
 			if (!is_valid_input(val, arr[i], data->stack_a.head))
-			{
-				free_2arr(arr);
-				ps_lstclear(&data->stack_a.head);
-				return ;
-			}
+				return (free_input(data, arr));
 			node = ps_lstnew(val);
 			ps_lstaddback(&data->stack_a.head, data, node);
 			i++;

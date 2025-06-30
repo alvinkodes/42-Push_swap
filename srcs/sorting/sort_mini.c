@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:13:10 by akok              #+#    #+#             */
-/*   Updated: 2025/06/27 15:51:07 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/30 10:02:52 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	sort_two(t_data *data)
 	bot = top->next;
 	if (top->val < bot->val)
 		return ;
-	sa(data);
+	sa(data, 1);
 }
 
 void	sort_three(t_data *data)
@@ -46,19 +46,19 @@ void	sort_three(t_data *data)
 	mid_val = data->stack_a.head->next->val;
 	bot_val = data->stack_a.head->next->next->val;
 	if (top_val > mid_val && top_val < bot_val)
-		sa(data);
+		sa(data, 1);
 	else if (top_val < mid_val && mid_val > bot_val && top_val < bot_val)
 	{
-		rra(data);
-		sa(data);
+		rra(data, 1);
+		sa(data, 1);
 	}
 	else if (top_val < mid_val && top_val > bot_val)
-		rra(data);
+		rra(data, 1);
 	else if (top_val > mid_val && mid_val > bot_val)
 	{
-		sa(data);
-		rra(data);
+		sa(data, 1);
+		rra(data, 1);
 	}
 	else if (top_val > mid_val && mid_val < bot_val && top_val > bot_val)
-		ra(data);
+		ra(data, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:11:28 by akok              #+#    #+#             */
-/*   Updated: 2025/06/25 17:28:41 by akok             ###   ########.fr       */
+/*   Updated: 2025/06/30 09:59:53 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 
 static void	swap(t_info *stack);
 
-void	sa(t_data *data)
+void	sa(t_data *data, int print)
 {
 	swap(&data->stack_a);
-	ft_putstr_fd("sa\n", 1);
+	if (print)
+		ft_putstr_fd("sa\n", 1);
 }
 
-void	sb(t_data *data)
+void	sb(t_data *data, int print)
 {
 	swap(&data->stack_b);
-	ft_putstr_fd("sb\n", 1);
+	if (print)
+		ft_putstr_fd("sb\n", 1);
 }
 
-void	ss(t_data *data)
+void	ss(t_data *data, int print)
 {
 	swap(&data->stack_a);
 	swap(&data->stack_b);
-	ft_putstr_fd("ss\n", 1);
+	if (print)
+		ft_putstr_fd("ss\n", 1);
 }
 
 static void	swap(t_info *stack)
