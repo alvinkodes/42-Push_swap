@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:44:24 by akok              #+#    #+#             */
-/*   Updated: 2025/07/01 13:44:58 by akok             ###   ########.fr       */
+/*   Updated: 2025/07/01 14:51:27 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,18 @@ static void	pre_sort_push(t_data *data)
 {
 	int		pushed;
 	int		stack_size;
+	t_stack	*cur_node;
 
 	pushed = 0;
 	stack_size = data->stack_a.size;
 	while (data->stack_a.size > 3 && pushed < stack_size / 2)
 	{
-		if (data->stack_a.head->index <= stack_size / 2)
+		cur_node = data->stack_a.head;
+		if (cur_node->index <= stack_size / 2)
 		{
 			pb(data, 1);
+			if (stack_size >= 250 && cur_node->index <= stack_size / 3)
+				rb(data, 1);
 			pushed++;
 		}
 		else
