@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:30:51 by akok              #+#    #+#             */
-/*   Updated: 2025/06/27 15:54:15 by akok             ###   ########.fr       */
+/*   Updated: 2025/07/01 12:21:57 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ t_cost	cal_cost(t_stack *node, t_data *data)
 	int		stack_size;
 	t_cost	cost_info;
 
-	stack_size = data->stack_b.size;
+	stack_size = data->stack_a.size;
 	cost_info.node = node;
-	cost_info.cost_a = cost_to_top(data, node);
-	cost_info.cost_b = cost_to_place(data, stack_size, node->val, A_TO_B);
+	cost_info.cost_a = cost_to_place(data, stack_size, node->val, B_TO_A);
+	cost_info.cost_b = cost_to_top(data, node);
 	cost_info.tot_cost = get_tot_cost(cost_info.cost_a, cost_info.cost_b);
 	return (cost_info);
 }
@@ -34,9 +34,9 @@ static int	cost_to_top(t_data *data, t_stack *target)
 	int		stack_size;
 	t_stack	*cur_node;
 
-	stack_size = data->stack_a.size;
+	stack_size = data->stack_b.size;
 	pos = 0;
-	cur_node = data->stack_a.head;
+	cur_node = data->stack_b.head;
 	while (cur_node && cur_node != target)
 	{
 		pos++;

@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:44:24 by akok              #+#    #+#             */
-/*   Updated: 2025/06/30 10:03:04 by akok             ###   ########.fr       */
+/*   Updated: 2025/07/01 13:44:58 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,9 @@ static void		bring_min_to_top(t_data *data);
 
 void	turk_sort(t_data *data)
 {
-	t_cost	cheapest_cost_info;
-
 	if (data->stack_a.size <= 3)
 		return (sort_under_three(data));
-	init_tcost(&cheapest_cost_info);
 	pre_sort_push(data);
-	while (data->stack_a.size > 3)
-	{
-		cheapest_cost_info = get_cheapest(data);
-		do_op(data, &cheapest_cost_info);
-	}
 	sort_three(data);
 	flush_b_to_a(data);
 	bring_min_to_top(data);
@@ -37,14 +29,23 @@ void	turk_sort(t_data *data)
 
 static void	pre_sort_push(t_data *data)
 {
-	int	i;
+	int		pushed;
+	int		stack_size;
 
-	i = 0;
-	while (data->stack_a.size > 3 && i < 2)
+	pushed = 0;
+	stack_size = data->stack_a.size;
+	while (data->stack_a.size > 3 && pushed < stack_size / 2)
 	{
-		pb(data, 1);
-		i++;
+		if (data->stack_a.head->index <= stack_size / 2)
+		{
+			pb(data, 1);
+			pushed++;
+		}
+		else
+			ra(data, 1);
 	}
+	while (data->stack_a.size > 3)
+		pb(data, 1);
 }
 
 static t_cost	get_cheapest(t_data *data)
@@ -55,7 +56,7 @@ static t_cost	get_cheapest(t_data *data)
 	t_cost	cur_cost_info;
 
 	cheapest_cost = INT32_MAX;
-	cur_node = data->stack_a.head;
+	cur_node = data->stack_b.head;
 	while (cur_node)
 	{
 		cur_cost_info = cal_cost(cur_node, data);
@@ -74,17 +75,11 @@ static t_cost	get_cheapest(t_data *data)
 static void	flush_b_to_a(t_data *data)
 {
 	t_cost	cost_info;
-	int		stack_size;
-	int		cur_val;
 
-	init_tcost(&cost_info);
-	while (data->stack_b.head)
+	while (data->stack_b.size)
 	{
-		stack_size = data->stack_a.size;
-		cur_val = data->stack_b.head->val;
-		cost_info.cost_a = cost_to_place(data, stack_size, cur_val, B_TO_A);
-		rotate_a(data, &cost_info);
-		pa(data, 1);
+		cost_info = get_cheapest(data);
+		do_op(data, &cost_info);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:30:21 by akok              #+#    #+#             */
-/*   Updated: 2025/06/30 10:14:41 by akok             ###   ########.fr       */
+/*   Updated: 2025/07/01 13:55:25 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_stack
 {
 	int				val;
+	int				index;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stack;
@@ -57,6 +58,7 @@ int		is_between_desc(int cur_val, int next_val, int val);
 int		is_between_ascd(int cur_val, int next_val, int val);
 int		max_ab(int cost_a, int cost_b);
 int		cost_to_place(t_data *data, int stack_size, int val, int move_dir);
+int		binary_search(int *arr, int val, int size);
 
 void	ps_lstaddback(t_stack **lst, t_data *data, t_stack *new_node);
 void	ps_lstclear(t_stack **lst);
@@ -85,6 +87,8 @@ void	rotate_a(t_data *data, t_cost *cost_info);
 void	rotate_b(t_data *data, t_cost *cost_info);
 void	free_input(t_data *data, char **arr);
 void	init_stack(t_data *data);
+void	quicksort(int *arr, int low, int high);
+void	assign_index(t_data *data, int **arr);
 
 t_stack	*ps_lstnew(int val);
 

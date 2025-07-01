@@ -6,7 +6,7 @@
 #    By: akok <akok@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/26 15:54:33 by akok              #+#    #+#              #
-#    Updated: 2025/06/30 10:21:38 by akok             ###   ########.fr        #
+#    Updated: 2025/07/01 13:56:54 by akok             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ COMMON_SRCS = 	srcs/sorting/sort_mini.c	\
 				srcs/sorting/turk.c			\
 				srcs/parsing/parse_input.c	\
 				srcs/parsing/parse_utils.c	\
+				srcs/parsing/index.c		\
 				srcs/do_op/do_op.c			\
 				srcs/do_op/do_op_utils.c	\
 				srcs/cost/cost.c			\
