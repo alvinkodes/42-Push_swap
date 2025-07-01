@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:38:28 by akok              #+#    #+#             */
-/*   Updated: 2025/06/30 08:49:18 by akok             ###   ########.fr       */
+/*   Updated: 2025/07/01 16:24:12 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	check_dup(t_stack *lst, int val);
 static int	check_limit(long val);
 static int	is_valid_input(long val, const char *s, t_stack *lst);
 
+//	split input by ' ', if the input is valid, add to list
 void	parse_input(char **input, t_data *data)
 {
 	size_t	i;

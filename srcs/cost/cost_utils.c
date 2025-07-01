@@ -6,22 +6,19 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:34:43 by akok              #+#    #+#             */
-/*   Updated: 2025/06/27 15:53:50 by akok             ###   ########.fr       */
+/*   Updated: 2025/07/01 16:33:00 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_node_pos(t_data *data, int val, int move_dir)
+int	get_node_pos(t_data *data, int val)
 {
 	int		pos;
 	t_stack	*cur_node;
 
 	pos = 0;
-	if (move_dir == A_TO_B)
-		cur_node = data->stack_b.head;
-	else
-		cur_node = data->stack_a.head;
+	cur_node = data->stack_a.head;
 	while (cur_node)
 	{
 		if (cur_node->val == val)
@@ -32,7 +29,7 @@ int	get_node_pos(t_data *data, int val, int move_dir)
 	return (pos);
 }
 
-int	get_insert_pos(t_info *stack, int val, int (*cmp)(int, int, int))
+int	get_insert_pos(t_info *stack, int val)
 {
 	int		pos;
 	int		cur_val;
@@ -48,7 +45,7 @@ int	get_insert_pos(t_info *stack, int val, int (*cmp)(int, int, int))
 			next_val = stack->head->val;
 		else
 			next_val = cur_node->next->val;
-		if (cmp(cur_val, next_val, val))
+		if (val > cur_val && val < next_val)
 			break ;
 		pos++;
 		cur_node = cur_node->next;
@@ -66,14 +63,11 @@ void	init_tcost(t_cost *data)
 	data->tot_cost = 0;
 }
 
-void	set_min_max(t_data *data, int *min_val, int *max_val, int move_dir)
+void	set_min_max(t_data *data, int *min_val, int *max_val)
 {
 	t_stack	*cur_node;
 
-	if (move_dir == A_TO_B)
-		cur_node = data->stack_b.head;
-	else
-		cur_node = data->stack_a.head;
+	cur_node = data->stack_a.head;
 	while (cur_node)
 	{
 		if (cur_node->val < *min_val)

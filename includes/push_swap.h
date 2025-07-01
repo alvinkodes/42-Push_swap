@@ -6,15 +6,12 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:30:21 by akok              #+#    #+#             */
-/*   Updated: 2025/07/01 13:55:25 by akok             ###   ########.fr       */
+/*   Updated: 2025/07/01 16:34:07 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-
-# define A_TO_B 0
-# define B_TO_A 1
 
 # include "libft.h"
 # include <stdint.h>
@@ -49,21 +46,18 @@ typedef struct s_cost
 }	t_cost;
 
 int		is_sorted(t_data *data);
-int		is_between_desc(int cur_val, int next_val, int val);
-int		is_between_ascd(int cur_val, int next_val, int val);
 int		max_ab(int cost_a, int cost_b);
-int		get_node_pos(t_data *data, int val, int move_dir);
-int		get_insert_pos(t_info *stack, int val, int (*cmp)(int, int, int));
-int		is_between_desc(int cur_val, int next_val, int val);
-int		is_between_ascd(int cur_val, int next_val, int val);
-int		max_ab(int cost_a, int cost_b);
-int		cost_to_place(t_data *data, int stack_size, int val, int move_dir);
 int		binary_search(int *arr, int val, int size);
+int		get_node_pos(t_data *data, int val);
+int		get_insert_pos(t_info *stack, int val);
+int		cost_to_place(t_data *data, int stack_size, int val);
 
-void	ps_lstaddback(t_stack **lst, t_data *data, t_stack *new_node);
-void	ps_lstclear(t_stack **lst);
 void	free_2arr(char **arr);
-void	parse_input(char **input, t_data *data);
+void	turk_sort(t_data *data);
+void	sort_three(t_data *data);
+void	init_tcost(t_cost *data);
+void	init_stack(t_data *data);
+void	ps_lstclear(t_stack **lst);
 void	pa(t_data *data, int print);
 void	pb(t_data *data, int print);
 void	sa(t_data *data, int print);
@@ -75,20 +69,17 @@ void	rr(t_data *data, int print);
 void	rra(t_data *data, int print);
 void	rrb(t_data *data, int print);
 void	rrr(t_data *data, int print);
-void	turk_sort(t_data *data);
-void	sort_three(t_data *data);;
 void	sort_under_three(t_data *data);
+void	free_input(t_data *data, char **arr);
+void	assign_index(t_data *data, int **arr);
+void	quicksort(int *arr, int low, int high);
+void	parse_input(char **input, t_data *data);
 void	do_op(t_data *data, t_cost	*cost_info);
 void	rotate_a(t_data *data, t_cost *cost_info);
-void	init_tcost(t_cost *data);
-void	set_min_max(t_data *data, int *min_val, int *max_val, int move_dir);
-void	rotate_both(t_data *data, t_cost *cost_info);
-void	rotate_a(t_data *data, t_cost *cost_info);
 void	rotate_b(t_data *data, t_cost *cost_info);
-void	free_input(t_data *data, char **arr);
-void	init_stack(t_data *data);
-void	quicksort(int *arr, int low, int high);
-void	assign_index(t_data *data, int **arr);
+void	rotate_both(t_data *data, t_cost *cost_info);
+void	ps_lstaddback(t_stack **lst, t_data *data, t_stack *new_node);
+void	set_min_max(t_data *data, int *min_val, int *max_val);
 
 t_stack	*ps_lstnew(int val);
 

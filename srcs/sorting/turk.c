@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:44:24 by akok              #+#    #+#             */
-/*   Updated: 2025/07/01 14:51:27 by akok             ###   ########.fr       */
+/*   Updated: 2025/07/01 16:33:58 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ static t_cost	get_cheapest(t_data *data);
 static void		flush_b_to_a(t_data *data);
 static void		bring_min_to_top(t_data *data);
 
+//	pre-sort value in stack a by pushing to stack b until three numbers left
+//	sort the three remaining numbers
+//	insert value from b back to a
+//	bring min val in stack a to top
 void	turk_sort(t_data *data)
 {
 	if (data->stack_a.size <= 3)
@@ -27,6 +31,10 @@ void	turk_sort(t_data *data)
 	bring_min_to_top(data);
 }
 
+//	split stack a into 3 chunks (chunk MIN, chunk MID and chunk MAX)
+//	send value in chunk MAX to bottom of stack a (ra)
+//	send value in chunk MID to top of stack b (pb)
+//	send value in chunk MIN to bottom of stack b (pb + rb)
 static void	pre_sort_push(t_data *data)
 {
 	int		pushed;
@@ -52,6 +60,7 @@ static void	pre_sort_push(t_data *data)
 		pb(data, 1);
 }
 
+//	calculate the cheapest cost
 static t_cost	get_cheapest(t_data *data)
 {
 	int		cheapest_cost;
@@ -76,6 +85,7 @@ static t_cost	get_cheapest(t_data *data)
 	return (cheapest_cost_info);
 }
 
+//	send the cheapest number in b back to a
 static void	flush_b_to_a(t_data *data)
 {
 	t_cost	cost_info;
@@ -87,6 +97,7 @@ static void	flush_b_to_a(t_data *data)
 	}
 }
 
+// rotate or reverse rotate stack a until min val is at top
 static void	bring_min_to_top(t_data *data)
 {
 	t_cost	cost_info;
@@ -97,8 +108,8 @@ static void	bring_min_to_top(t_data *data)
 	init_tcost(&cost_info);
 	max_val = INT32_MIN;
 	min_val = INT32_MAX;
-	set_min_max(data, &min_val, &max_val, B_TO_A);
-	min_pos = get_node_pos(data, min_val, B_TO_A);
+	set_min_max(data, &min_val, &max_val);
+	min_pos = get_node_pos(data, min_val);
 	if (min_pos <= data->stack_a.size / 2)
 		cost_info.cost_a = min_pos;
 	else

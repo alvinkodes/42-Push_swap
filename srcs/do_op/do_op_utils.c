@@ -6,12 +6,14 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:27:07 by akok              #+#    #+#             */
-/*   Updated: 2025/06/30 10:02:07 by akok             ###   ########.fr       */
+/*   Updated: 2025/07/01 16:39:45 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// check if both cost a and cost b is positive
+// if yes, use rr to move both
 static void	rotate_both_up(t_data *data, t_cost *cost_info)
 {
 	while (cost_info->cost_a > 0 && cost_info->cost_b > 0)
@@ -22,6 +24,8 @@ static void	rotate_both_up(t_data *data, t_cost *cost_info)
 	}
 }
 
+//	check if both cost a and cost b is negative
+//	if yes, use rrr to move both
 static void	rotate_both_down(t_data *data, t_cost *cost_info)
 {
 	while (cost_info->cost_a < 0 && cost_info->cost_b < 0)

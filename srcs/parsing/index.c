@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 13:42:07 by akok              #+#    #+#             */
-/*   Updated: 2025/07/01 13:57:17 by akok             ###   ########.fr       */
+/*   Updated: 2025/07/01 16:23:05 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	assign_index_from_arr(t_data *data, int **arr)
 	}
 }
 
+//	store node val in an array
+//	sort the array to know the position of each node when the stack is sorted
+//	set node->index to the corresponding index in the array
 void	assign_index(t_data *data, int **arr)
 {
 	int		i;
