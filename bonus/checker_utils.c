@@ -6,7 +6,7 @@
 /*   By: akok <akok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 10:08:34 by akok              #+#    #+#             */
-/*   Updated: 2025/06/30 10:24:06 by akok             ###   ########.fr       */
+/*   Updated: 2025/07/02 08:59:27 by akok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static int	check_ops(char *line)
 		return (1);
 	if (ft_strncmp(line, "rr\n", 4) == 0)
 		return (1);
-	if (ft_strncmp(line, "rra\n", 4) == 0)
+	if (ft_strncmp(line, "rra\n", 5) == 0)
 		return (1);
-	if (ft_strncmp(line, "rrb\n", 4) == 0)
+	if (ft_strncmp(line, "rrb\n", 5) == 0)
 		return (1);
-	if (ft_strncmp(line, "rrr\n", 4) == 0)
+	if (ft_strncmp(line, "rrr\n", 5) == 0)
 		return (1);
 	if (ft_strncmp(line, "pa\n", 4) == 0)
 		return (1);
@@ -72,11 +72,11 @@ static void	execute_ops(char *line, t_data *data)
 		rb(data, 0);
 	else if (ft_strncmp(line, "rr\n", 4) == 0)
 		rr(data, 0);
-	else if (ft_strncmp(line, "rra\n", 4) == 0)
+	else if (ft_strncmp(line, "rra\n", 5) == 0)
 		rra(data, 0);
-	else if (ft_strncmp(line, "rrb\n", 4) == 0)
+	else if (ft_strncmp(line, "rrb\n", 5) == 0)
 		rrb(data, 0);
-	else if (ft_strncmp(line, "rrr\n", 4) == 0)
+	else if (ft_strncmp(line, "rrr\n", 5) == 0)
 		rrr(data, 0);
 	else if (ft_strncmp(line, "pa\n", 4) == 0)
 		pa(data, 0);
